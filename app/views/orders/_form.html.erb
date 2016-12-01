@@ -1,0 +1,54 @@
+<%= form_for(order) do |f| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('error.template.header',  :count  =>  @order.errors.size,  :model  =>  t('activerecord.models.order')) %></h2>
+      <p><%=  t('errors.template.body')  %></p>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name,  :size =>  40 %>
+  </div>
+
+  <div class="field">
+   
+    <div class='html-tag city-group'>
+    <%#=  form_tag("/deletecheck",  method:  "get")   do %>
+    <%= f.label :address %>
+      <select class='city-select city-province'  name="order[province]">
+        <option> --省份--</option>
+        <%= options_for_select(ChinaCity.list)  %>
+      </select>
+      <select class='city-select city-city'  name="order[city]">
+        <option>--城市--</option>
+      </select>
+      <select class='city-select city-district'  name="order[district]">
+        <option>--地区--</option>
+      </select>
+    <%#= submit_tag "submit" %>
+    <%#  end  %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email,  :size  =>   40 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pay_type %>
+    <%=  select(:order,:pay_type,options_for_select(Order.p_t)) %>
+    <%#= f.text_field :pay_type,  Order: :PAYMENT_TYPES,  :prompt  =>  'select  a  payment  method' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Submit  Order', :data => { :"disable-with" => "请稍等..."}  %>
+  </div>
+<% end %>

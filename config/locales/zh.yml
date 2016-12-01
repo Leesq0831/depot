@@ -1,0 +1,83 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+zh:
+  store:
+    index:
+      title_html:     "商品列表"
+      add_html:     "添加到购物车"
+  
+  carts: 
+    cart:
+      title:    "购物车"
+      empty:   "清空购物车"
+      checkout:   "结算"
+      total:   "总计"
+
+  layouts:
+    application:    
+      title:              "××× 自助商城"
+      home:           "主页"
+      question:      "问题"
+      news:            "新闻"
+      contact:         "联系"
+      order:            "订单"
+      product:        "商品"
+      login:              "登录"
+      sign:                "注册"
+      logout:            "退出"
+
+  number:
+    currency:
+      format:
+        unit:    "￥"
+        precision:  2
+        separation:  '.'
+        delimiter:  ','
+        format:  '%u%n'
+
+  activerecord:
+    errors:
+      messages:
+        inclusion:     ""
+        blank:           "不允许为空"
+    model:
+      order:     "订单"
+    attributes:
+      address:   '地址'
+      name:         "姓名"
+      email:         "邮箱"
+      pay_type:    "付款方式"
+
+  errors:
+    template:
+      body:      "动作被阻止"
+      header:   "产生%{count}个错误, 阻止了保存模型 有%{model}"
+
+  devise:
+    sessions:
+      user:
+        signed_out:    "退出成功"
+        signed_in:    "登录成功"
+
+  thank:      "谢谢"
+
+
+

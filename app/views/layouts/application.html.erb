@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Depot</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body  id="store">
+    <div  id = "banner">
+      <%=  image_tag("")  %>
+      <%=  @page_title  ||  t('.title')  %>
+      <%=  form_tag  store_path, :method  =>  'get',  :class  =>  'locale'  do  %>
+        <%=  select_tag  'set_locale',  options_for_select(LANGUAGES,  I18n.locale.to_s),  :onchange  =>  'this.form.submit()' %>
+        <%=  javascript_tag  "$$('.locale  input').each(Element.hide)"  %>
+      <%  end  %>
+    </div>
+    <div  id="columns">
+      <div  id="side">
+      <!--   <div  id="cart"<%#  if  @cart.line_items.empty?  %>
+    	style="display:  none"
+    	<%#  end  %>>
+          <%#=  render  @cart  %>
+        </div> -->
+        <%  if  @cart  %>
+        <%=  hidden_div_if(@cart.line_items.empty?,  :id  =>  'cart')  do  %>
+        <%=  render  @cart  %>
+        <%  end  %>
+        <%  end  %>
+        
+        <a href=""><%=  t('.home')  %></a><br/>
+        <a href=""><%=  t('.question')  %></a><br/>
+        <a href=""><%=  t('.news')  %></a><br/>
+        <a href=""><%=  t('.contact')  %></a><br/>
+         <% if current_user.nil? %>
+            <%= link_to t('.login'), new_user_session_path %><br/>
+            <%= link_to t('.sign'), new_user_registration_path %> 
+        <% else %>
+            <%=  link_to  t('.order'),  orders_path  %><br/>
+            <%=  link_to  t('.product'),  products_path  %><br/>
+            <%= link_to current_user.email, edit_user_registration_path  %> <br/>
+            <%= link_to t('.logout'), destroy_user_session_path,   :method => :delete %>
+        <%  end  %>	
+      </div>
+      <div  id="main">
+        <%= yield %>
+      </div>	
+    </div>
+  </body>
+</html>
